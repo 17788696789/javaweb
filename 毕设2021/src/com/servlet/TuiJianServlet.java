@@ -1,7 +1,31 @@
 package com.servlet;
+import java.io.IOException;
+import java.rmi.server.ExportException;
+import java.util.Arrays;
+import java.util.List;
 
+import com.dao.User;
+import com.dao.UserDao_1;
+import com.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Component;
+import javax.servlet.*;
 
-public class TuiJianServlet {
+import javax.servlet.ServletContext;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/test2")
+public class TuiJianServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    {
+        resp.getWriter().println(test());
+    }
+
     /*类class Sim {}用于进行余弦相似度的计算，
      * 利用用户之间的相似度做评分预测，并比较预测值与真实值的误差(对所有用户做平均)*/
 
@@ -62,30 +86,42 @@ public class TuiJianServlet {
     }
 
 
-    public static void main(String args[]){
-        TuiJianServlet sim = new TuiJianServlet();
-        double mat[][]={
-                {5,3,0,1,2},
-                {4,0,0,1,4},
-                {1,1,0,5,6},
-                {1,0,0,4,7},
-                {0,1,5,4,6}};
+    public String test()throws IOException {
+        ServletContext sc = getServletContext();
+        ApplicationContext as =(ApplicationContext) sc.getAttribute("ApplicationContext");//监听器
+        UserService us= as.getBean("userService",UserService.class);
+        List<User> list = us.selectUserLike();
+        int t = 0;
+        double mat[][]= new double[list.size()][5];
+        for(User user :list){
+            mat[t][0] = user.getZhishi();
+            mat[t][1]=user.getShenghuo();
+            mat[t][2]=user.getYingyue();
+            mat[t][3]=user.getYule();
+            mat[t][4]=user.getZhixun();
+            System.out.println("??"+mat[t][0]+"??");
+            t++;
+        }
+
+        System.out.println(Arrays.deepToString(mat));
         for(int i=0;i<mat.length;i++){
             for(int j=0;j<mat.length;j++){
-                System.out.print(sim.cosine(mat, i, j)+" ");
+                System.out.print(cosine(mat, i, j)+" ");
             }System.out.println();
         }
         System.out.println("以上是相似度矩阵");
 
-        double[][] pre=sim.predict(mat);
+        double[][] pre=predict(mat);
         for(int i=0;i<mat.length;i++){
             for(int j=0;j<mat[i].length;j++)
                 System.out.print(pre[i][j]+" ");
             System.out.println();
         }
         System.out.println("以上是预测结果");
-        System.out.println(sim.comErr(mat));
+        System.out.println(comErr(mat));
         System.out.println("以上是平均误差");
+
+        return "成功";
 //System.out.println(sim.r(mat, 4, 1));
     }
 }

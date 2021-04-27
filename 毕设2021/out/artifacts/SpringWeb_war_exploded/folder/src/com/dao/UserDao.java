@@ -170,4 +170,15 @@ public class UserDao {
         in.close();
         return re;
     }
+    public List<User> selectUserLike()throws IOException{
+        InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(in);
+        SqlSession session = factory.openSession();
+        UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
+        List<User> flag=userDao_1.selectUserLike();
+        session.close();
+        in.close();
+        return flag;
+    }
 }

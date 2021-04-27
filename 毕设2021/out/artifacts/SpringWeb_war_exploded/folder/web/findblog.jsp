@@ -29,21 +29,21 @@
     <br>
     <br>
     <center>
-        <table>
+        <table class="ui selectable table">
             <form action="FindBlog" method="post">
                 输入模糊查询的blog:<input type="text" value="" name="mohu" id="mohu" ><input type="submit" value="查询">
             </form>
         </table>
 
 
-        <table border="10">
+        <table class="ui selectable table">
             <tr>
                 <td>blog内容</td>
             </tr>
             <c:forEach items="${requestScope.list}" var="member">
 
                 <tr>
-                    <td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>
+                    <td><div class="ui action input"><input type="text" value="${member.blog}" name="${member.userid}blog"></div></td>
                 </tr>
             </c:forEach>
 

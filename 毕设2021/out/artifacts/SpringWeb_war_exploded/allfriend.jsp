@@ -31,7 +31,7 @@
 <center>
 <form method="post" action="" >
 
-<table border="1">
+    <table class="ui selectable table">
     <%
 
     InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
@@ -60,26 +60,38 @@
         <td>去往好友主页</td>
     </tr>
   <c:forEach items="${requestScope.list}" var="member">
+
       <tr>
             <input type="hidden" id="need" value="" name="need">
-          <td><input type="submit" id="${member.id}" value="修改" onclick="get(this.id);form.action='UpdateServlet';form.submit();" ></td>
-          <td><input type="submit" id="${member.id}" value="删除" onclick="get(this.id);form.action='DeleteServlet';form.submit();"></td>
-          <td><input type="text" value="${member.id}" name="${member.id}id"></td>
-          <td><input type="text" value="${member.name}" name="${member.id}name" ></td>
-          <td><input type="text" value="${member.sex}" name="${member.id}sex"></td>
-          <td><input type="text" value="${member.age}" name="${member.id}age"></td>
-          <td><input type="text" value="${member.qq}" name="${member.id}qq"></td>
-          <td><input type="text" value="${member.telephone} " name="${member.id}tel"></td>
-          <td><input type="text" value="${member.email}" name="${member.id}email"></td>
-          <td><input type="text" value="${member.address}" name="${member.id}address"></td>
+          <div class="ui action input">
+          <td><div class="ui action input">
+              <input type="submit" id="${member.id}" value="修改" onclick="get(this.id);form.action='UpdateServlet';form.submit();" >
+          </div>
+          </td>
+          <td><div class="ui action input"><input type="submit" id="${member.id}" value="删除" onclick="get(this.id);form.action='DeleteServlet';form.submit();">
+          </div>
+          </td>
+          <td><div class="ui action input">
+              <input type="text" value="${member.id}" name="${member.id}id"></div>
+          </td>
+              <td><div class="ui action input"><input type="text" value="${member.name}" name="${member.id}name" ></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.sex}" name="${member.id}sex"></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.age}" name="${member.id}age"></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.qq}" name="${member.id}qq"></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.telephone} " name="${member.id}tel"></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.email}" name="${member.id}email"></div></td>
+              <td><div class="ui action input"><input type="text" value="${member.address}" name="${member.id}address"></div></td>
           <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
-          <td><input type="submit" id="${member.id}"  value="去往好友主页" onclick="get(this.id);form.action='CaXunServlet';form.submit()"></input></td>
+              <td><div class="ui action input"><input type="submit" id="${member.id}"  value="去往好友主页" onclick="get(this.id);form.action='CaXunServlet';form.submit()"></input>
+              </div></td>
 <%--<a href="show.jsp">ashkdjajksdhjkasdh</a>--%>
 
-
+          </div>
       </tr>
+
   </c:forEach>
-    <table border="1">
+
+        <table class="ui selectable table">
         <tr>
             <td>操作</td>
             <td>姓名</td>
@@ -91,17 +103,21 @@
             <td>地址</td>
         </tr>
         <hr>
+
         <tr>
-            <td clospan="2"><input type="submit" value="增加" onclick="form.action='AddServlet';form.submit()"></td>
-            <td><input type="text" value="" name="newname" ></td>
-            <td><input type="text" value="" name="newsex"></td>
-            <td><input type="text" value="" name="newage"></td>
-            <td><input type="text" value="" name="newqq"></td>
-            <td><input type="text" value="" name="newtel"></td>
-            <td><input type="text" value="" name="newemail"></td>
-            <td><input type="text" value="" name="newaddress"></td>
+            <div class="ui action input">
+            <td clospan="2"> <div class="ui action input"><input type="submit" value="增加" onclick="form.action='AddServlet';form.submit()"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newname" ></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newsex"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newage"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newqq"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newtel"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newemail"></div></td>
+            <td> <div class="ui action input"><input type="text" value="" name="newaddress"></div></td>
+            </div>
         </tr>
     </table>
+        </div>
 
 <script>
     function get(a) {

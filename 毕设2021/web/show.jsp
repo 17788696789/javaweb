@@ -38,7 +38,7 @@
     </div>
 </nav>
 <center>
-<table border="10">
+    <table class="ui selectable table">
 <%
 
     InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
@@ -68,7 +68,7 @@
             <%--<td><input type="submit" id="${member.id}" value="修改" onclick="get(this.id);form.action='UpdateServlet';form.submit();" ></td>--%>
             <%--<td><input type="submit" id="${member.id}" value="删除" onclick="get(this.id);form.action='DeleteServlet';form.submit();"></td>--%>
 
-        <td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>
+        <td><div class="ui action input"><input type="text" value="${member.blog}" name="${member.userid}blog"></div></td>
 
     </tr>
 </c:forEach>

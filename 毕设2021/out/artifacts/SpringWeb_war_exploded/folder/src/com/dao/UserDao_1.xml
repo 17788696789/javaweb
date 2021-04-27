@@ -52,4 +52,7 @@
     <select id="selectFriendBlogById" resultType="UserBlog">
         select * from userblog where userid = #{0}
     </select>
+    <select id="selectUserLike" resultType="User">
+        select zhixun,shenghuo,yingyue,zhishi,yule from user
+    </select>
 </mapper>

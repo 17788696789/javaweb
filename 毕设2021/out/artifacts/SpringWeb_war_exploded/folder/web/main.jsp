@@ -42,7 +42,7 @@
 <div style="text-align: center">
     <form method="post" action="" >
 
-        <table border="0">
+        <table class="ui selectable table">
                 <%
 
     InputStream in = Resources.getResourceAsStream("SqlMapper.xml");

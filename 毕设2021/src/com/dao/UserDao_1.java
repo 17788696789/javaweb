@@ -21,4 +21,5 @@ public interface UserDao_1 {
     UserBlog findByWords(String  words);
     User findByUserId(String name);
     List<UserBlog> selectFriendBlogById(int id);
+    List<User> selectUserLike();
 }

@@ -57,4 +57,7 @@ public List<UserBlog> SelectByblog(String a) throws IOException {
     public int findByUserId(String name) throws IOException {
         return userDao.findByUserId(name);
     }
+    public List<User> selectUserLike()throws IOException {
+        return  userDao.selectUserLike();
+    }
 }

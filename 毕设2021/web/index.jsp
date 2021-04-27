@@ -47,9 +47,12 @@
                     <br>
                     <br>
                     <br>
+        <div class="ui attached message" >
+            <div class="header">欢迎来到我们的站点！ </div>
 
-<form method="post" action="" >
-                       <table border="0" style="text-align: center">
+        </div>
+<form method="post" action=""  class="ui  form attached fluid segment">
+                       <table  class="ui selectable table" border="0" style="text-align: center">
                     <%
                         InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
                         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
@@ -73,7 +76,7 @@
 
                     <%--</tr>--%>
                     <c:forEach items="${requestScope.list}" var="member" >
-                        <div style="height: 200px;display: block;padding-left: 600px">
+                        <div style="height: 200px;display: block;padding-left: 600px" >
                             <input type="hidden" id="need" value="" name="need">
                             <%--<td><input type="submit" id="${member.id}" value="修改" onclick="get(this.id);form.action='UpdateServlet';form.submit();" ></td>--%>
                             <%--<td><input type="submit" id="${member.id}" value="删除" onclick="get(this.id);form.action='DeleteServlet';form.submit();"></td>--%>
@@ -90,6 +93,7 @@
 
                                 删除
                             </button></div>
+                        </div>
 
                         </div>
                     </c:forEach>
@@ -109,6 +113,7 @@
             </form>
 
                     <br>
+
                     <br>
 
 

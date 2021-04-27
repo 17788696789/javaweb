@@ -30,15 +30,15 @@
                background-attachment:fixed;
                background-size:100% 100%; ">
 <center>
-    <table>
+    <table class="ui selectable table">
         <form action="QuNameServlet" method="post">
         输入模糊查询的字:<input type="text" value="" name="mohu" id="mohu" >
-            <input type="submit" value="查询"/>
+            <div class="ui action input"><input type="submit" value="查询"/></div>
         </form>
     </table>
 
     <hr>
-    <table border="1">
+    <table class="ui selectable table">
         <%
 //        List<Friends> evo = (List<Friends>) request.getAttribute("list");
 //        request.setAttribute("list",evo);
@@ -59,14 +59,14 @@
             </tr>
         <c:forEach items="${requestScope.list}" var="member">
             <tr>
-                <td><input type="text" value="${member.id}" name="${member.id}id"></td>
-                <td><input type="text" value="${member.name}" name="${member.id}name" ></td>
-                <td><input type="text" value="${member.sex}" name="${member.id}sex"></td>
-                <td><input type="text" value="${member.age}" name="${member.id}age"></td>
-                <td><input type="text" value="${member.qq}" name="${member.id}qq"></td>
-                <td><input type="text" value="${member.telephone} " name="${member.id}tel"></td>
-                <td><input type="text" value="${member.email}" name="${member.id}email"></td>
-                <td><input type="text" value="${member.address}" name="${member.id}address"></td>
+                <td><div class="ui action input"><input type="text" value="${member.id}" name="${member.id}id"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.name}" name="${member.id}name" ></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.sex}" name="${member.id}sex"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.age}" name="${member.id}age"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.qq}" name="${member.id}qq"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.telephone} " name="${member.id}tel"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.email}" name="${member.id}email"></div></td>
+                <td><div class="ui action input"><input type="text" value="${member.address}" name="${member.id}address"></div></td>
             </tr>
         </c:forEach>
 
