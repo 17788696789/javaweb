@@ -125,13 +125,25 @@
                     <%--<td>博客内容：</td><td><input type="text" name="newblog" ></td>--%>
             </div>
 
-
+            <div class="ui selection dropdown">
+                <input type="hidden" name="tag">
+                <i class="dropdown icon"></i>
+                <div class="default text">类别</div>
+                <div class="menu" tabindex="-1">
+                    <div class="item" data-value="0">知识</div>
+                    <div class="item" data-value="1">生活</div>
+                    <div class="item" data-value="2">音乐</div>
+                    <div class="item" data-value="3">娱乐</div>
+                    <div class="item" data-value="4">资讯</div>
+                </div>
+            </div>
 
             <button class="ui red basic button" type="submit" tabindex="5">
                 发布
 
             </button>
         </form>
+
 
 
 
@@ -177,6 +189,10 @@
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-
+<script>
+    $(function(){
+        $('.ui.selection.dropdown').dropdown();
+    });
+</script>
 </body>
 </html>

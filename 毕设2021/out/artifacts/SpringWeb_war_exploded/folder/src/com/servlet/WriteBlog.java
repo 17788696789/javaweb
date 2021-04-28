@@ -28,6 +28,8 @@ public class WriteBlog extends HttpServlet {
 
 
         blog = req.getParameter("newblog");
+        int tag = Integer.parseInt(req.getParameter("tag"));
+        System.out.println(tag);
 
 //
         HttpSession session =req.getSession();
@@ -39,6 +41,7 @@ public class WriteBlog extends HttpServlet {
         userBlog.setBlog(blog);
         userBlog.setUsername(s);
         userBlog.setUserid(userid);
+        userBlog.setTag(tag);
         us.Writeblog(userBlog);
 
         resp.sendRedirect("index.jsp");

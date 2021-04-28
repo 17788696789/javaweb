@@ -28,7 +28,7 @@
         SELECT * FROM friends WHERE name LIKE #{name}
     </select>
     <insert id="Writeblog" parameterType="UserBlog">
-        INSERT INTO userblog(userid,username,blog)VALUES (#{userid},#{username},#{blog})
+        INSERT INTO userblog(userid,username,blog,tag)VALUES (#{userid},#{username},#{blog},#{tag})
     </insert>
     <!--新的-->
     <select id="SelectByblog" resultType="UserBlog" parameterType="String">

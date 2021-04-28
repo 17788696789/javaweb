@@ -59,17 +59,18 @@
 %>
 
             <c:forEach items="${requestScope.list}" var="member">
-            <div style="height: 200px;display: block;padding-left: 600px">
+            <div style="height: 200px;display: block;padding-left: 600px" >
 
                 <input type="hidden" id="need" value="" name="need">
                 <div style="height: 100%;width:400px;float: left">
-                    <textarea rows="10" cols="30" id="${member.userid}" style="height: 100%;width: 100%"  name="${member.userid}blog">${member.blog}</textarea>
+                    <textarea rows="10" cols="30" id="${member.userid}text" style="height: 100%;width: 100%"  name="${member.userid}blog">${member.blog}</textarea>
                 </div>
                 <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
                     <div style="float: left">
                         <textarea type="text"  name="${member.userid}username" >${member.username}</textarea></div>
                     <div style="float: left">
                         <textarea type="text"  name="${member.userid}userid">${member.userid}</textarea></div>
+                <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">asds</button>
             </div>
                     <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
 
@@ -79,6 +80,10 @@
             <script>
                 function get(a) {
                     document.getElementById("need").value = a;
+
+                }
+                function jump(id) {
+                    window.open('vue.html?id='+id);
 
                 }
             </script>
