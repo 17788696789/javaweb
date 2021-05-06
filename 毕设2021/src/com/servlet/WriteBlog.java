@@ -27,7 +27,8 @@ public class WriteBlog extends HttpServlet {
          String blog;
 
 
-        blog = req.getParameter("newblog");
+        blog = req.getParameter("content-editormd-markdown-doc");
+        System.out.println(blog);
         int tag = Integer.parseInt(req.getParameter("tag"));
         System.out.println(tag);
 

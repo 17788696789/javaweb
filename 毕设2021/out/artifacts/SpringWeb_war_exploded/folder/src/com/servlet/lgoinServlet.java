@@ -50,8 +50,9 @@ public class lgoinServlet extends HttpServlet{
                session.setAttribute("userId",d);
                 System.out.println(d);
                System.out.println(s);
+                req.getRequestDispatcher("/test2").forward(req, resp);
 
-                resp.sendRedirect("index.jsp");
+
                 return;
             }
 

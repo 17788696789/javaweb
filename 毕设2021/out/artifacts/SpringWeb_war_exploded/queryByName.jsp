@@ -13,6 +13,7 @@
 <head>
     <title>模糊查询</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/me.css">
 </head>
 <center>
     <nav class="ui inverted  attached segment">
@@ -25,10 +26,7 @@
     </nav>
 
 <hr>
-<body style="background-image:url(img/s.jpg);
-               background-repeat:no-repeat;
-               background-attachment:fixed;
-               background-size:100% 100%; ">
+
 <center>
     <table class="ui selectable table">
         <form action="QuNameServlet" method="post">

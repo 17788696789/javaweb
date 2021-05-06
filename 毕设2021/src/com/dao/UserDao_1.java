@@ -5,13 +5,14 @@ import java.util.List;
 public interface UserDao_1 {
     List<Friends> findAllfriend();
     List<UserBlog>findAllUserBlog();
+    List<UserBlog>findTuiJianBlog(int tag,int userid);
     User findByNametop(String name);
     int SaveUser(User user);
     int DeleteFriend(int id);
     void UpdateFriend(Friends friends);
     int AddFriend(Friends friends);
     List<Friends> SelectByc(String name);
-
+    int WriteComment(Comment comment);
     int Writeblog(UserBlog userBlog);
 //    新的
     List<UserBlog> findAllblog(int id);
@@ -22,4 +23,8 @@ public interface UserDao_1 {
     User findByUserId(String name);
     List<UserBlog> selectFriendBlogById(int id);
     List<User> selectUserLike();
+    UserBlog GetBlogById(int blogid);
+    List<Comment> selectContentByBlogId(int id);
+
+
 }

@@ -101,6 +101,18 @@ public class UserDao {
         in.close();
         return  flag;
     }
+    public int WriteComment(Comment comment)throws IOException{
+        InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(in);
+        SqlSession session = factory.openSession();
+        UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
+        int flag =userDao_1.WriteComment(comment);
+        session.commit();
+        session.close();
+        in.close();
+        return  flag;
+    }
 //    新的
     public List<UserBlog> SelectByblog(String a) throws IOException {
         InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
@@ -110,6 +122,14 @@ public class UserDao {
         UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
 
         return userDao_1.SelectByblog(a);
+    }
+    public List<UserBlog> findTuiJianBlog(int tag, int userid)throws IOException{
+        InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(in);
+        SqlSession session = factory.openSession();
+        UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
+              return  userDao_1.findTuiJianBlog(tag,userid);
     }
     public int Deleteblog(int id) throws IOException {
         InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
@@ -170,6 +190,18 @@ public class UserDao {
         in.close();
         return re;
     }
+    public  List<Comment> selectContentByBlogId(int id)throws IOException{
+        InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(in);
+        SqlSession session = factory.openSession();
+        UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
+        List<Comment> comments = userDao_1.selectContentByBlogId(id);
+
+        session.close();
+        in.close();
+        return comments;
+    }
     public List<User> selectUserLike()throws IOException{
         InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
         SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
@@ -180,5 +212,16 @@ public class UserDao {
         session.close();
         in.close();
         return flag;
+    }
+    public UserBlog GetBlogById(int blogid)throws  IOException{
+        InputStream in = Resources.getResourceAsStream("SqlMapper.xml");
+        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
+        SqlSessionFactory factory = builder.build(in);
+        SqlSession session = factory.openSession();
+        UserDao_1 userDao_1 = session.getMapper(UserDao_1.class);
+        UserBlog userBlog=userDao_1.GetBlogById(blogid);
+        session.close();
+        in.close();
+        return userBlog;
     }
 }

@@ -30,6 +30,9 @@
     <insert id="Writeblog" parameterType="UserBlog">
         INSERT INTO userblog(userid,username,blog,tag)VALUES (#{userid},#{username},#{blog},#{tag})
     </insert>
+    <insert id="WriteComment" parameterType="Comment">
+        INSERT  INTO usercomment(comment_content,comment_userId,comment_blogId,comment_username)VALUES (#{comment_content},#{comment_userId},#{comment_blogId},#{comment_username})
+    </insert>
     <!--新的-->
     <select id="SelectByblog" resultType="UserBlog" parameterType="String">
         SELECT * FROM userblog WHERE blog LIKE #{blog }
@@ -54,5 +57,14 @@
     </select>
     <select id="selectUserLike" resultType="User">
         select zhixun,shenghuo,yingyue,zhishi,yule from user
+    </select>
+    <select id="GetBlogById" resultType="UserBlog">
+        select * from userblog where id=#{0}
+    </select>
+    <select id="selectContentByBlogId" resultType="Comment">
+        select  * from usercomment where comment_blogId=#{0}
+    </select>
+    <select id="findTuiJianBlog"  resultType="UserBlog">
+        select  * from userblog where tag=#{arg0} and userid != #{arg1}
     </select>
 </mapper>

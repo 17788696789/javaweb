@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.dao.User;
+import com.dao.UserBlog;
 import com.dao.UserDao_1;
 import com.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/test2")
 public class TuiJianServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException
     {
-        resp.getWriter().println(test());
+        resp.getWriter().println(test(req));
+
+        resp.sendRedirect("index.jsp");
+        return;
+
     }
 
     /*类class Sim {}用于进行余弦相似度的计算，
@@ -86,7 +92,7 @@ public class TuiJianServlet extends HttpServlet {
     }
 
 
-    public String test()throws IOException {
+    public String test( HttpServletRequest request)throws IOException {
         ServletContext sc = getServletContext();
         ApplicationContext as =(ApplicationContext) sc.getAttribute("ApplicationContext");//监听器
         UserService us= as.getBean("userService",UserService.class);
@@ -109,6 +115,21 @@ public class TuiJianServlet extends HttpServlet {
                 System.out.print(cosine(mat, i, j)+" ");
             }System.out.println();
         }
+
+//        int id = (int)request.getSession().getAttribute("userId");
+//        int n=id-1;
+//        int leny=5;
+//        int y=0;
+//        for(int x=0;x<leny-1;x++){
+//            if(mat[n][x] < mat[n][x+1]){
+//                y=x+1;
+//            }
+//            else
+//            {
+//                y=x;
+//            }
+//        }
+
         System.out.println("以上是相似度矩阵");
 
         double[][] pre=predict(mat);
@@ -118,10 +139,31 @@ public class TuiJianServlet extends HttpServlet {
             System.out.println();
         }
         System.out.println("以上是预测结果");
+        int id = (int)request.getSession().getAttribute("userId");
+        int n=id-1;
+        int leny=5;
+        double max=-1;
+        int col=0;
+
+        for(int x=0;x<leny;x++){
+            if(pre[n][x] > max){
+                max=pre[n][x];
+                col=x;
+            }
+        }
+        System.out.println(col);
+        int tag=col;
+        HttpSession session =request.getSession();
+        session.setAttribute("tag",col);
+        System.out.println(col);
+
+
+
         System.out.println(comErr(mat));
         System.out.println("以上是平均误差");
 
         return "成功";
+
 //System.out.println(sim.r(mat, 4, 1));
     }
 }

@@ -17,11 +17,9 @@
 <head>
     <title>主站</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/me.css">
 </head>
-<body style="background-image:url(img/r.gif);
-               background-repeat:no-repeat;
-               background-attachment:fixed;
-               background-size:100% 100%; ">
+
 <nav class="ui inverted  attached segment">
     <div class="ui container">
         <div class="ui inverted menu">
@@ -70,13 +68,69 @@
                         <textarea type="text"  name="${member.userid}username" >${member.username}</textarea></div>
                     <div style="float: left">
                         <textarea type="text"  name="${member.userid}userid">${member.userid}</textarea></div>
-                <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">asds</button>
+                <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">了解详情</button>
             </div>
                     <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
 
 
 
             </c:forEach>
+
+            <script>
+                function get(a) {
+                    document.getElementById("need").value = a;
+
+                }
+                function jump(id) {
+                    window.open('vue.html?id='+id);
+
+                }
+            </script>
+        </table>
+    </form>
+</div>
+
+<div style="text-align: center">
+    <form method="post" action="" >
+
+        <table class="ui selectable table">
+            <%
+
+                InputStream on = Resources.getResourceAsStream("SqlMapper.xml");
+                SqlSessionFactoryBuilder builde = new SqlSessionFactoryBuilder();
+                SqlSessionFactory factorys = builde.build(on);
+                SqlSession session3 = factorys.openSession();
+                UserDao_1 userDao = session3.getMapper(UserDao_1.class);
+                int userid = (int)request.getSession().getAttribute("userId");
+                int tag =(int)request.getSession().getAttribute("tag");
+                List<UserBlog> lists = userDao.findTuiJianBlog(tag,userid);
+                request.setAttribute("list",lists);
+
+                session3.close();
+                on.close();
+
+            %>
+
+            <c:forEach items="${requestScope.list}" var="member">
+                <div style="height: 200px;display: block;padding-left: 600px" >
+
+                    <input type="hidden" id="need" value="" name="need">
+                    <div style="height: 100%;width:400px;float: left">
+                        <textarea rows="10" cols="30" id="${member.userid}text" style="height: 100%;width: 100%"  name="${member.userid}blog">${member.blog}</textarea>
+                    </div>
+                        <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
+                    <div style="float: left">
+                        <textarea type="text"  name="${member.userid}username" >${member.username}</textarea></div>
+                    <div style="float: left">
+                        <textarea type="text"  name="${member.userid}userid">${member.userid}</textarea></div>
+                    <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">了解详情</button>
+                </div>
+                <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
+
+
+
+            </c:forEach>
+
             <script>
                 function get(a) {
                     document.getElementById("need").value = a;
@@ -102,10 +156,9 @@
 
 
 
-
-
 <br>
 <br>
+
 <br>
 <br>
 <br>

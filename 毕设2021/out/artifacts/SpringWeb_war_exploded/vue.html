@@ -5,19 +5,146 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>home</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <link rel="stylesheet" href="./css/me.css">
     <!-- import CSS -->
     <!--    <script src="https://unpkg.com/vue/dist/vue.js"></script>-->
     <!--    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>-->
     <script src="js/vue.js"></script>
     <script src="js/vue-router.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        /* 设置页眉的样式 */
+        .header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 设置顶部导航栏的样式 */
+        .topnav {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /* 设置 topnav 链接的样式 */
+        .topnav a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        /* 改变鼠标悬停时的颜色 */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* 创建并排的三个不相等的列 */
+        .column {
+            float: left;
+            padding: 10px;
+        }
+
+        /* 左右列 */
+        .column.side {
+            width: 25%;
+        }
+
+        /* 中间列 */
+        .column.middle {
+            width: 50%;
+        }
+
+        /* 清除列之后的浮动 */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* 响应式布局 - 创建堆叠而非并排的三列 */
+        @media screen and (max-width: 600px) {
+            .column.side, .column.middle {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-<div id="app" :style="'min-height:' + (screenHeight) + 'px'">
-    <div @click="test">点他妈的</div>
-    {{user}}
+<div id="app" >
+<div class="header">
+    <h1>欢迎浏览有趣的博客</h1>
+    <p>这会是一次有趣的体验</p>
 </div>
 
 
+
+<div class="row">
+    <div class="column side" style="font-family:verdana;padding:20px;border-radius:10px;border:10px solid #EE872A">
+        <h2>博客发布者的信息</h2>
+        <h3>用户名：{{blog.username}}</h3>
+    </div>
+
+    <div class="column middle" style="font-family:verdana;padding:20px;border-radius:10px;border:10px solid #EE872A" >
+        <h2>博客内容</h2>
+        <h3>{{blog.blog}}</h3>
+
+    </div>
+
+
+    <div class="column side" v-for="(comment,index) in comments" style="font-family:verdana;padding:20px;border-radius:10px;border:10px solid #EE872A">
+        <h2>用户{{comment.comment_username}}的评论</h2>
+        <div>{{comment.comment_content}}</div>
+    </div>
+</div>
+
+<!--<div id="app" >-->
+    <!--<div style="font-family:verdana;padding:20px;border-radius:10px;border:10px solid #EE872A"><h3>{{blog.blog}}</h3></div>-->
+
+    <!--<div v-for="(comment,index) in comments">-->
+        <!--<div>{{comment.comment_content}}</div>-->
+    <!--</div>-->
+    <form class="ui reply form" :action="'WriteComment?id='+id"  method="post">
+        <div style="height: 200px;width:1200px;padding-left: 600px" class="field"  >
+
+
+            <textarea rows="10" cols="30" name="newcomment"  placeholder="输入你想说的话" /></textarea>
+            <!--<%&#45;&#45;<td>博客内容：</td><td><input type="text" name="newblog" ></td>&#45;&#45;%>-->
+        </div>
+
+        <!--<div class="ui selection dropdown">-->
+            <!--<input type="hidden" name="tag">-->
+            <!--<i class="dropdown icon"></i>-->
+            <!--<div class="default text">类别</div>-->
+            <!--<div class="menu" tabindex="-1">-->
+                <!--<div class="item" data-value="0">知识</div>-->
+                <!--<div class="item" data-value="1">生活</div>-->
+                <!--<div class="item" data-value="2">音乐</div>-->
+                <!--<div class="item" data-value="3">娱乐</div>-->
+                <!--<div class="item" data-value="4">资讯</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <button class="ui red basic button" type="submit" tabindex="5">
+            发布
+
+        </button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
 </body>
 <!--<script src="js/vue-router.js"></script>-->
 <!--<script src="js/vue.js"></script>-->
@@ -29,10 +156,19 @@
         data(){
             return {
                 yangxu:'',
-                user:'z '
+                user:'',
+                blog:'',
+                comments:'',
+                id:'' +
+                    ''
             }
         },
         methods:{
+            getParam(name) {
+                var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+                var r = window.location.search.substr(1).match(reg);//search,查询？后面的参数，并匹配正则
+                if(r!=null)return  unescape(r[2]); return null;
+            },
             test(){
                 var _this = this;
                 axios({
@@ -43,12 +179,26 @@
                     _this.user = data;
                 });
             },
-            getScreenHeight(){
-                return this.screenHeight+window.pageYOffset;
-            }
+
         },
         mounted(){
-
+            var _this = this;
+            var  id = _this.getParam("id");
+            this.id = id;
+            axios({
+                method:'get',
+                url:'/spring/getblog?id='+id
+            }).then(function (response) {
+                var data = response.data;
+                _this.blog = data;
+            });
+            axios({
+                method:'get',
+                url:'/spring/getcomment?id='+id
+            }).then(function (response) {
+                var data = response.data;
+                _this.comments = data;
+            });
         },
         watch:{
             loadingMain(val){

@@ -1,8 +1,6 @@
 package com.service;
-import com.dao.Friends;
-import com.dao.User;
-import com.dao.UserDao;
-import com.dao.UserBlog;
+import com.dao.*;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -15,6 +13,9 @@ public class UserService {
 
     public List<UserBlog> selectFriendBlogById(int id)throws IOException{
         return userDao.selectFriendBlogById( id);
+    }
+    public List<Comment> selectContentByBlogId(int id)throws  IOException{
+        return  userDao.selectContentByBlogId(id);
     }
 public int SaveUsr(User user) throws IOException {
         return userDao.SaveUser(user);
@@ -37,11 +38,17 @@ public int SaveUsr(User user) throws IOException {
         return  userDao.Selectbyc(a);
 
     }
+    public List<UserBlog> findTuiJianBlog(int tag, int userid)throws IOException{
+        return  userDao.findTuiJianBlog(tag,userid);
+    }
     public int Writeblog(UserBlog userBlog) throws IOException{
         return  userDao.WriteBlog(userBlog);
 
     }
 //    新的
+    public int WriteComment(Comment comment)throws IOException{
+        return  userDao.WriteComment(comment);
+    }
 public List<UserBlog> SelectByblog(String a) throws IOException {
     return  userDao.SelectByblog(a);
 }
@@ -59,5 +66,8 @@ public List<UserBlog> SelectByblog(String a) throws IOException {
     }
     public List<User> selectUserLike()throws IOException {
         return  userDao.selectUserLike();
+    }
+    public UserBlog GetBlogById(int blogid)throws  IOException{
+        return userDao.GetBlogById(blogid);
     }
 }
