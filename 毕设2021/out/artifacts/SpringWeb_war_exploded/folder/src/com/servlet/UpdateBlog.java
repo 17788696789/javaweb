@@ -31,13 +31,14 @@ public class UpdateBlog extends HttpServlet {
         UserBlog userBlog = new UserBlog();
         int userid;
         String blog;
+        String title;
         String check="";
         check=req.getParameter("need");
         userid =Integer.parseInt(check);
-
+        title=req.getParameter(check+"title");
         blog = req.getParameter(check+"blog");
         userBlog.setId(userid);
-
+        userBlog.setTitle(title);
         userBlog.setBlog(blog);
 
         us.UpdateBlog(userBlog);

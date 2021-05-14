@@ -35,7 +35,26 @@
         </div>
     </div>
 </nav>
-<center>
+<div class="m-padded-tb-large">
+    <div class="ui container">
+        <div class="ui grid">
+            <div class="eleven wide column">
+                <div class="ui top attached segment">
+                    <div class="ui middle aligend two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header">所有博客</h3>
+                        </div>
+                        <div class="right aligend column">
+                            <%--共<h3 class="ui orange header m-inline-block">12</h3>篇--%>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="ui attached segment">
+                    <div class="ui segment">
+                        <div class="ui grid">
+
+<form method="post" action="" >
     <table class="ui selectable table">
 <%
 
@@ -54,24 +73,43 @@
 
 %>
 
-<tr>
-
-
-    <td>历史博客</td>
-
-</tr>
+        <div class="fifteen wide column">
 <c:forEach items="${requestScope.list}" var="member">
-    <tr>
+
         <input type="hidden" id="need" value="" name="need">
             <%--<td><input type="submit" id="${member.id}" value="修改" onclick="get(this.id);form.action='UpdateServlet';form.submit();" ></td>--%>
             <%--<td><input type="submit" id="${member.id}" value="删除" onclick="get(this.id);form.action='DeleteServlet';form.submit();"></td>--%>
 
-        <td><div class="ui action input"><input type="text" value="${member.blog}" name="${member.userid}blog"></div></td>
+        <a href="vue.html?id=${member.id}">
 
-    </tr>
+            <img src="https://picsum.photos/id/1023/800/100" class="ui rounded image">
+            <h3 class="ui header">发布者：${member.username}</h3>
+            <p>${member.blog}</p>
+            <div class=" ui divider"></div>
+                <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
+        </a>
+
+
 </c:forEach>
+    </table>
+</form>
+                            </div>
+                            <div class="one wide column">
 
-    <br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
     <br>
     <br>
     <br>
@@ -79,8 +117,8 @@
     <br>
     <br>
 
-</table>
-</center>
+
+
 <footer class="ui inverted  vertical segment" style="position: fixed;bottom:0;width: 100%">
     <div class="ui container">
         <div class="ui inverted  grid">

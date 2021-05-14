@@ -28,7 +28,7 @@
         SELECT * FROM friends WHERE name LIKE #{name}
     </select>
     <insert id="Writeblog" parameterType="UserBlog">
-        INSERT INTO userblog(userid,username,blog,tag)VALUES (#{userid},#{username},#{blog},#{tag})
+        INSERT INTO userblog(userid,username,blog,tag,title)VALUES (#{userid},#{username},#{blog},#{tag},#{title})
     </insert>
     <insert id="WriteComment" parameterType="Comment">
         INSERT  INTO usercomment(comment_content,comment_userId,comment_blogId,comment_username)VALUES (#{comment_content},#{comment_userId},#{comment_blogId},#{comment_username})
@@ -44,7 +44,7 @@
         DELETE FROM userblog WHERE id=#{id}
     </delete>
     <update id="UpdateBlog" parameterType="UserBlog">
-        UPDATE userblog SET  blog=#{blog} WHERE id=#{id}
+        UPDATE userblog SET  blog=#{blog},title=#{title} WHERE id=#{id}
     </update>
     <select id="findByWords" resultType="UserBlog" parameterType="String">
     SELECT * FROM  userblog  WHERE  blog=#{blog}
@@ -55,6 +55,9 @@
     <select id="selectFriendBlogById" resultType="UserBlog">
         select * from userblog where userid = #{0}
     </select>
+    <!--<select id="selectFriendById" resultType="UserBlog">-->
+        <!--select * from user where userid=#{0}-->
+    <!--</select>-->
     <select id="selectUserLike" resultType="User">
         select zhixun,shenghuo,yingyue,zhishi,yule from user
     </select>
@@ -66,5 +69,8 @@
     </select>
     <select id="findTuiJianBlog"  resultType="UserBlog">
         select  * from userblog where tag=#{arg0} and userid != #{arg1}
+    </select>
+    <select id="findChangeblog" resultType="UserBlog">
+        SELECT * FROM userblog where id = #{0}
     </select>
 </mapper>

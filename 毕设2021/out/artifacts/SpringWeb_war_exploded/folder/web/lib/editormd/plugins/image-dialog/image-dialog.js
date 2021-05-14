@@ -119,7 +119,7 @@
 
                             //删除对话框
                             this.remove();
-                            
+
                             return false;
                         }]
                     }
@@ -162,6 +162,12 @@
                             loading(false);
 
                             var body = (uploadIframe.contentWindow ? uploadIframe.contentWindow : uploadIframe.contentDocument).document.body;
+                            // var innertext = body.innerText;
+                            // innertext = innertext.split("\n")[0];
+                            // var textcontent = body.textContent;
+                            // textcontent = textcontent.split("\n")[0];
+                            // json=json.toString();
+                            // json=json.substring(0,json.lastIndexOf("}")+1);
                             var json = (body.innerText) ? body.innerText : ( (body.textContent) ? body.textContent : null);
 
                             json = (typeof JSON.parse !== "undefined") ? JSON.parse(json) : eval("(" + json + ")");

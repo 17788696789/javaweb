@@ -25,20 +25,23 @@ public class WriteBlog extends HttpServlet {
          int userid;
          String username;
          String blog;
+         String Imgpath;
+         String title;
 
 
         blog = req.getParameter("content-editormd-markdown-doc");
         System.out.println(blog);
         int tag = Integer.parseInt(req.getParameter("tag"));
         System.out.println(tag);
-
+          title=req.getParameter("title");
+          System.out.println(title);
 //
         HttpSession session =req.getSession();
         String s =  (String)session.getAttribute("user");
         userid = (int)session.getAttribute("userId");
         System.out.println(s);
 //
-
+        userBlog.setTitle(title);
         userBlog.setBlog(blog);
         userBlog.setUsername(s);
         userBlog.setUserid(userid);

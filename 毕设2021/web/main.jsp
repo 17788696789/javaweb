@@ -13,7 +13,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="com.dao.UserBlog" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<>
 <head>
     <title>主站</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
@@ -25,19 +25,37 @@
         <div class="ui inverted menu">
             <h2 class="ui teal header item">欢迎来到系统推荐页面</h2>
             <a href="index.jsp" class="item">返回我的界面</a>
-            <a href="allfriend.jsp" class="item">查询所有好友信息</a>
-            <a href="queryByName.jsp" class="item">按姓名模糊查询好友信息</a>
-            <a href="findblog.jsp" class="item">查询以往的博客</a>
-            <div class="right item">
-                <div class="ui icon input">
-                    <input type="text" placeholder="搜索以往的博客......">
-                    <i class="search link icon"></i>
-                </div>
-            </div>
+            <%--<a href="allfriend.jsp" class="item">查询所有好友信息</a>--%>
+            <%--<a href="queryByName.jsp" class="item">按姓名模糊查询好友信息</a>--%>
+            <%--<a href="findblog.jsp" class="item">查询以往的博客</a>--%>
+            <%--<div class="right item">--%>
+                <%--<div class="ui icon input">--%>
+                    <%--<input type="text" placeholder="搜索以往的博客......">--%>
+                    <%--<i class="search link icon"></i>--%>
+                <%--</div>--%>
+            <%--</div>--%>
         </div>
     </div>
 </nav>
-<div style="text-align: center">
+<div class="m-padded-tb-large">
+<div class="ui container">
+    <div class="ui grid">
+        <div class="eleven wide column">
+            <div class="ui top attached segment">
+                <div class="ui middle aligend two column grid">
+                    <div class="column">
+                        <h3 class="ui teal header">所有博客</h3>
+                    </div>
+                    <div class="right aligend column">
+                        <%--共<h3 class="ui orange header m-inline-block">12</h3>篇--%>
+
+                    </div>
+                </div>
+            </div>
+            <div class="ui attached segment">
+            <div class="ui segment">
+                <div class="ui grid">
+                    <div class="fifteen wide column">
     <form method="post" action="" >
 
         <table class="ui selectable table">
@@ -57,40 +75,55 @@
 %>
 
             <c:forEach items="${requestScope.list}" var="member">
-            <div style="height: 200px;display: block;padding-left: 600px" >
+
 
                 <input type="hidden" id="need" value="" name="need">
-                <div style="height: 100%;width:400px;float: left">
-                    <textarea rows="10" cols="30" id="${member.userid}text" style="height: 100%;width: 100%"  name="${member.userid}blog">${member.blog}</textarea>
-                </div>
+
+                <a href="vue.html?id=${member.id}">
+
+                    <img src="https://picsum.photos/id/1023/800/100" class="ui rounded image">
+                    <h3 class="ui header">发布者：${member.username}</h3>
+                    <p>${member.title}</p>
+                    <div class=" ui divider"></div>
                 <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
-                    <div style="float: left">
-                        <textarea type="text"  name="${member.userid}username" >${member.username}</textarea></div>
-                    <div style="float: left">
-                        <textarea type="text"  name="${member.userid}userid">${member.userid}</textarea></div>
-                <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">了解详情</button>
-            </div>
+                </a>
                     <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
 
 
 
             </c:forEach>
 
-            <script>
-                function get(a) {
-                    document.getElementById("need").value = a;
-
-                }
-                function jump(id) {
-                    window.open('vue.html?id='+id);
-
-                }
-            </script>
         </table>
     </form>
-</div>
+                    </div>
+                    <div class="one wide column">
 
-<div style="text-align: center">
+                    </div>
+
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="five wide column">
+            <div class="ui segment">
+                <div class="ui top attached segment">
+                    <div class="ui middle aligend two column grid">
+                        <div class="column">
+                            <h3 class="ui teal header">系统推荐</h3>
+                        </div>
+                        <div class="right aligend column">
+                            <%--共<h3 class="ui orange header m-inline-block">12</h3>篇--%>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ui attached segment">
+                <div class="ui segment">
+
     <form method="post" action="" >
 
         <table class="ui selectable table">
@@ -112,19 +145,18 @@
             %>
 
             <c:forEach items="${requestScope.list}" var="member">
-                <div style="height: 200px;display: block;padding-left: 600px" >
+
 
                     <input type="hidden" id="need" value="" name="need">
-                    <div style="height: 100%;width:400px;float: left">
-                        <textarea rows="10" cols="30" id="${member.userid}text" style="height: 100%;width: 100%"  name="${member.userid}blog">${member.blog}</textarea>
-                    </div>
-                        <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
-                    <div style="float: left">
-                        <textarea type="text"  name="${member.userid}username" >${member.username}</textarea></div>
-                    <div style="float: left">
-                        <textarea type="text"  name="${member.userid}userid">${member.userid}</textarea></div>
-                    <button id="${member.id}" class="ui red basic button" onclick="jump(this.id)">了解详情</button>
-                </div>
+
+                        <a href="vue.html?id=${member.id}">
+
+                            <img src="https://picsum.photos/id/1057/800/100" class="ui rounded image">
+                            <h3 class="ui header">发布者：${member.username}</h3>
+                            <p>${member.title}</p>
+                                <%--<td><input type="text" value="${member.blog}" name="${member.userid}blog"></td>--%>
+                        </a>
+
                 <%--<%session.setAttribute("name", "${member.id}id"); %>--%>
 
 
@@ -136,14 +168,23 @@
                     document.getElementById("need").value = a;
 
                 }
-                function jump(id) {
-                    window.open('vue.html?id='+id);
 
-                }
             </script>
         </table>
     </form>
+
+            </div>
+        </div>
+    </div>
+
 </div>
+</div>
+</div>
+
+
+
+
+
 
 
 
